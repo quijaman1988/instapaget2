@@ -1,0 +1,11 @@
+{
+  "name": "instapaget2",
+  "version": "1.0.0",
+  "description": "Instapage NodeJS app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Manuel Q",
+  "license": "ISC"
+}
