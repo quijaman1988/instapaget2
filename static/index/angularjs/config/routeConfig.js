@@ -3,5 +3,5 @@ app.config(function($routeProvider) {
   .when("/", {
     templateUrl: "index/main.html",
     controller: 'mainCtrl as mainCtrl'
-    });
+  });
 });

@@ -11,7 +11,6 @@ module.exports = class ServerApp {
   }
 
   start() {
-      console.log("in")
       this.app = express();
 
       this.app.use(bodyParser.json()); // for parsing application/json

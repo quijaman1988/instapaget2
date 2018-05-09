@@ -15,7 +15,6 @@ function checkLogin(db, loginCredentials) {
 
 function upsertNewUser(db, options) {
   return new Promise((resolve, reject) => {
-    console.log("NEW")
     const collection = db.collection("instapage_options");
     collection.insert(options, function(err, result) {
       if (!err) {
@@ -26,6 +25,8 @@ function upsertNewUser(db, options) {
     });
   });
 }
+
+
 
 module.exports = {
   checkLogin: checkLogin,

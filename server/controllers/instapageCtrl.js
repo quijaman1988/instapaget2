@@ -20,7 +20,7 @@ function login (db) {
             "domain":"127.0.0.1"
           }).then((res) => {
              console.log("Account Succesfully Connected to NodeJS Application");
-            instaClient.buildRequest("GET_PAGE_LIST",res2.ops[0].accountKeys)
+            instaClient.buildRequest("GET_PAGE_LIST",res.ops[0].accountKeys)
             .then((res) => {
               console.log(res)
             }).catch((err) => {
@@ -28,22 +28,25 @@ function login (db) {
             });
           }).catch((err) => {
             console.log("Failed to Connect Account to NodeJS App");
+
           })
 
         }).catch((err) => {
-          console.log(err)
+          response.status(500).json({"error":err})
         })
       } else {
         var apiKeys = utils.encodeApiKeys(res[0].accountKeys);
         instaClient.buildRequest("GET_PAGE_LIST",apiKeys)
         .then((res) => {
           console.log(res);
+          response.status(200).json(res.data);
         }).catch((err) => {
           console.log(err)
+          res.status(500).json(err)
         });
       }
     }).catch((err) => {
-      console.log(err)
+      response.status(500).json(err)
     })
   }
 
@@ -53,7 +56,7 @@ function insertCredentialsInDB(loginCredentials, db) {
   return new Promise((resolve, reject) => {
   instaClient.buildRequest("LOGIN",loginCredentials)
   .then((res) => {
-    console.log("marco");
+    console.log("res",res)
     if (res.success) {
       instaClient.buildRequest("GET_ACCOUNT_KEYS", res.data.usertoken)
       .then((response) => {
@@ -74,9 +77,10 @@ function insertCredentialsInDB(loginCredentials, db) {
       });
     } else {
       reject("Login Failed")
+      res.status(500).json(err)
     }
   }).catch((err) => {
-    reject(err);
+    reject("Error");
   });
 });
 }

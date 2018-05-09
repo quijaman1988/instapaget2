@@ -1,7 +1,26 @@
 <h1>Instapage App</h1>
-<p>Please Login using your instapage credentials</p>
+<p>Please Login using your instapage credentials and see them appear</p>
 <label>Email</label><br />
 <input ng-model="loginInfo.email" type="text" /><br />
 <label>Password</label><br />
-<input ng-model="loginInfo.password" type="text" /> </br/>
-<button ng-click="login()">Sign In</button>
+<input ng-model="loginInfo.password" type="password" /> </br/>
+<button ng-click="login()">Show pages</button>
+<br />
+<div ng-show=error>
+  <h3>There was an error with the credentials you provided. Try adding some landing pages instapage</h3>
+</div>
+<div ng-show=empty>
+  <h3>Your Account was succesfully added. To see your pages try adding some landing to Wordpress in Instapge</h3>
+</div>
+<div ng-show="landing">
+  <h1>InstaPages Connected to Wordpress</h1>
+    <ul style="list-style-type: none;">
+      <li style="background-color:#f0ecec" ng-repeat="landingPage in landingPages">
+        <p><img style="width:100px;height:100px" src={{landingPage.screenshot}} /></p>
+        <h4><b>id: </b>{{landingPage.id}}</h4>
+        <h4><b>Title: </b>{{landingPage.title}}</p>
+        <h4><b>Subaccount: </b>{{landingPage.subaccount}}</p>
+      </li>
+    </ul>
+  </div>
+</div>
