@@ -1,9 +1,9 @@
-const COLLECTION = 'instapage';
+// const COLLECTION = 'instapage_options';
 
 function checkLogin(db, loginCredentials) {
   return new Promise((resolve, reject) => {
-    const collection = db.collection(COLLECTION);
-    collection.find({"email":loginCredentials.email, "password":loginCredentials.password}).toArray(function(err, docs) {
+    const collection = db.collection("instapage_options");
+    collection.find({"username":loginCredentials.email}).toArray(function(err, docs) {
       if (!err) {
         resolve(docs);
       } else {
@@ -13,6 +13,21 @@ function checkLogin(db, loginCredentials) {
   });
 }
 
+function upsertNewUser(db, options) {
+  return new Promise((resolve, reject) => {
+    console.log("NEW")
+    const collection = db.collection("instapage_options");
+    collection.insert(options, function(err, result) {
+      if (!err) {
+        resolve(result);
+      } else {
+        reject(err);
+      }
+    });
+  });
+}
+
 module.exports = {
-  checkLogin: checkLogin
+  checkLogin: checkLogin,
+  upsertNewUser: upsertNewUser
 }

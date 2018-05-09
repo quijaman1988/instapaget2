@@ -9,7 +9,11 @@
   "author": "Manuel Q",
   "license": "ISC",
   "dependencies": {
+    "base-64": "^0.1.0",
+    "install": "^0.11.0",
+    "npm": "^6.0.0",
     "request": "^2.85.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "utf8": "^3.0.0"
   }
 }
